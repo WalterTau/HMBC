@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Web.Api", "HBMC.Web.Api\HBMC.Web.Api.csproj", "{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Domain.Api", "HBMC.Domain.Api\HBMC.Domain.Api.csproj", "{195CF8FA-585C-432C-A4F1-0762B4108F29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Web.Api.Models", "HBMC.Web.Api.Models\HBMC.Web.Api.Models.csproj", "{62D427CB-6120-4769-8E91-AA242E911C8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HBMC Web Api", "HBMC Web Api", "{E8592A14-DA49-47C1-ABA2-0852103C0BC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HBMC Domain Api", "HBMC Domain Api", "{7C6D5D08-242D-42E2-A79C-A78CBF6F9FD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Web.Api.Services", "HBMC.Web.Api.Services\HBMC.Web.Api.Services.csproj", "{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Domain.Api.Models", "HBMC.Domain.Api.Models\HBMC.Domain.Api.Models.csproj", "{6D46AD8E-785A-428D-B09E-B7C8EDAAE474}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{195CF8FA-585C-432C-A4F1-0762B4108F29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{195CF8FA-585C-432C-A4F1-0762B4108F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{195CF8FA-585C-432C-A4F1-0762B4108F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{195CF8FA-585C-432C-A4F1-0762B4108F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D427CB-6120-4769-8E91-AA242E911C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D427CB-6120-4769-8E91-AA242E911C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D427CB-6120-4769-8E91-AA242E911C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D427CB-6120-4769-8E91-AA242E911C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D46AD8E-785A-428D-B09E-B7C8EDAAE474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D46AD8E-785A-428D-B09E-B7C8EDAAE474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D46AD8E-785A-428D-B09E-B7C8EDAAE474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D46AD8E-785A-428D-B09E-B7C8EDAAE474}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52A0DB81-4E56-4DA0-B82E-4B9D6D773C93} = {E8592A14-DA49-47C1-ABA2-0852103C0BC5}
+		{195CF8FA-585C-432C-A4F1-0762B4108F29} = {7C6D5D08-242D-42E2-A79C-A78CBF6F9FD1}
+		{62D427CB-6120-4769-8E91-AA242E911C8D} = {E8592A14-DA49-47C1-ABA2-0852103C0BC5}
+		{A937EB23-CA2D-4FD2-8AA5-B84F63F8D4B4} = {E8592A14-DA49-47C1-ABA2-0852103C0BC5}
+		{6D46AD8E-785A-428D-B09E-B7C8EDAAE474} = {7C6D5D08-242D-42E2-A79C-A78CBF6F9FD1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {459C1A62-9A4A-44D0-8A61-E985BE01DC13}
+	EndGlobalSection
+EndGlobal
