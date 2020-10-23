@@ -4,7 +4,12 @@ using System.Text;
 
 namespace HBMC.Domain.Api.Models
 {
-    class Harbor
+    public class Harbor
     {
-    }
+		public string Id { get; set; }
+		public string Name { get; set; }
+		public string Location { get; set; }
+		public string City { get; set; }
+		
+	}
 }
