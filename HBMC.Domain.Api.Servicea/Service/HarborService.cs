@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 
 namespace HBMC.Domain.Api.Services.Service
 {
-    public class ManageScheduleService : IScheduleService
+    public class HarborService : IHarbour
     {
-        public async Task<Schedule> Add(Schedule model)
+        public async Task<Harbor> Add(Harbor model)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Schedule> Delete()
+        public async Task<Harbor> Delete()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Schedule>> GetAllSchedules()
+        public async Task<IEnumerable<Boats>> GetAllHarbour()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Schedule> GetById(string id)
+        public async Task<Harbor> GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Schedule> Update()
+        public async Task<Harbor> Update()
         {
             throw new NotImplementedException();
         }

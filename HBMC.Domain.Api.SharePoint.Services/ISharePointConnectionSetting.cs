@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HBMC.Domain.Api
 {
-    public interface ISharePointServiceConfig
+    public interface ISharePointConnectionSetting
     {
         string ConnectionSharePointUrl { get; }
         string Username { get; }

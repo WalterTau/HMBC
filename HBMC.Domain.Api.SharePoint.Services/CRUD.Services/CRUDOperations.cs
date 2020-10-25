@@ -7,8 +7,9 @@ using Microsoft.SharePoint.Client;
 using Microsoft.SharePoint;
 using SharePointHelper.Lookups;
 using System.Net;
-using Newtonsoft.Json;
-
+using HBMC.Domain.Api.SharePoint.Services;
+using HBMC.Domain.Api;
+using System.Security;
 
 namespace SharePointHelper.CRUD
 {
@@ -17,55 +18,14 @@ namespace SharePointHelper.CRUD
     /// </summary>
    public class CRUDOperations
     {
-       
-        /// <summary>
-        /// Returns a list of items that matches the provided filter and pageSize 
-        /// </summary>
-        /// <param name="listName">Name of the list</param>
-        /// <param name="parameterList">Filter parameters</param>
-        /// <param name="pageSize">Page Size [eg. 10 items]</param>
-        /// <param name="OrderByField">Field for Order</param>
-        /// <param name="Ascending">Sorting of the list[Ascending=True or False]</param>
-        /// <param name="clientContext">Client Context</param>
-        /// <returns></returns>
-        public static IEnumerable<ListItem> GetPagedData(string listName, int pageSize,string OrderByField, bool Ascending = true, List<Parameter> parameterList = null, ClientContext clientContext = null)
+
+        static HBMC.Domain.Api.ISharePointConnectionSetting _connectionSetting;
+
+        public CRUDOperations(ISharePointConnectionSetting connectionSetting)
         {
-            try
-            {
-                ValidateListName(listName);
-                ValidateParamelistAndOrdeByField(parameterList, OrderByField);
-                var RowLimit = string.Format("<RowLimit>{0}</RowLimit><OrderBy><FieldRef Name='{1}' Ascending='{2}'/></OrderBy>", pageSize, OrderByField, Ascending);
-                var filterQuery = parameterList != null ? LookupHelper.FilterByAnyField(parameterList) : null;
-                var removedView = !string.IsNullOrEmpty(filterQuery?.ViewXml) ? filterQuery.ViewXml.Replace("<View>", string.Empty).Replace("</View>", string.Empty) : null;
-                var withRowLimit = !string.IsNullOrEmpty(removedView) ? string.Format("{0}{1}", removedView, RowLimit) : string.Format("{0}", RowLimit);
-                filterQuery = new CamlQuery();
-                filterQuery.ViewXml = string.Format("<View>{0}</View>", withRowLimit);
-                var oListItems = new List<ListItem>();
-                clientContext = clientContext ?? (clientContext = LookupHelper.GetClientContextFromAdminOrWindows(clientContext));
-                if (clientContext != null)
-                {
-                    using (clientContext)
-                    {
-                        var oList = clientContext
-                                    .Web
-                                    .Lists
-                                    .GetByTitle(listName)
-                                    .GetItems(filterQuery);
-                        clientContext.Load(oList);
-                        clientContext.ExecuteQuery();
-                        if (oList != null && oList.Count() > 0)
-                            oList.ToList().ForEach(item => oListItems.Add(item));
-                    }
-                }
-                return oListItems;
-            }
-            catch(Exception exception)
-            {
-                return new List<ListItem>();
-            }    
-                
+            _connectionSetting = connectionSetting;
         }
-    
+
         /// <summary>
         /// Saves new item in the list that matches the provided listName and parameters
         /// </summary>
@@ -73,10 +33,14 @@ namespace SharePointHelper.CRUD
         /// <param name="listName">Name of the list</param>
         /// <param name="parameterList">List of fields that will be updates(ParameterName=FieldName,ParameterValue=FieldValue)</param>
         /// <returns>True if saved successfully, false if not saved successfully</returns>
-        public static bool Save(ClientContext clientContext, string listName, List<Parameter> parameterList)
+        public static bool Save(string listName, List<Parameter> parameterList)
         {
-            ValidateListName(listName);
-            if(parameterList != null && parameterList.Count > 0)
+
+            ClientContext clientContext = new ClientContext(_connectionSetting.ConnectionSharePointUrl);
+            SecureString securePassword = new SecureString();
+            _connectionSetting.Pasword.ToList().ForEach(securePassword.AppendChar);
+            clientContext.Credentials = new SharePointOnlineCredentials(_connectionSetting.Username, securePassword);
+            if (parameterList != null && parameterList.Count > 0)
             {
                 if (clientContext != null)
                 {
@@ -105,7 +69,7 @@ namespace SharePointHelper.CRUD
                 oListItem[parameter.ParameterName] = SetLookupValue(parameter.ParameterValue);
             else if (parameter.IsPeoplePicker)
             {
-                validatePoplePicker(parameter);
+            
                 oListItem[parameter.ParameterName] = parameter.User;
             }
             else
@@ -127,7 +91,7 @@ namespace SharePointHelper.CRUD
         /// <returns>True if updated successfully, false if update failed</returns>
         public static bool Update(ClientContext clientContext, int listItemId, string listName, List<Parameter> parameterList)
         {
-            ValidateListName(listName);
+     
             if(parameterList != null && parameterList.Count > 0)
             {
                 if(clientContext != null)
@@ -159,7 +123,7 @@ namespace SharePointHelper.CRUD
         /// <returns>Returns true if item was deleted successfully else false</returns>
         public static bool Delete(ClientContext clientContext, string listName, int listItemId)
         {
-            ValidateListName(listName);
+            
             if(clientContext != null)
             {
                 using (clientContext)
@@ -190,7 +154,7 @@ namespace SharePointHelper.CRUD
         {
             try
             {
-                ValidateListName(listName);
+             
                 ListItem listItem = null;
                 if (clientContext != null)
                 {
@@ -226,10 +190,10 @@ namespace SharePointHelper.CRUD
         {
             try
             {
-        
-            
-                ValidateListName(listName);
-                var clientContext = LookupHelper.GetClientContextFromAdminOrWindows();
+                ClientContext clientContext = new ClientContext(_connectionSetting.ConnectionSharePointUrl);
+                SecureString securePassword = new SecureString();
+                _connectionSetting.Pasword.ToList().ForEach(securePassword.AppendChar);
+                clientContext.Credentials = new SharePointOnlineCredentials(_connectionSetting.Username, securePassword);
                 ListItem listItem = null;
                 if (clientContext != null)
                 {
@@ -255,43 +219,8 @@ namespace SharePointHelper.CRUD
             }
            
         }
-        /// <summary>
-        /// Validate the provided listname where it's null or empty
-        /// </summary>
-        /// <param name="listName">name of the list</param>
-        public static void ValidateListName(string listName)
-        {
-            if (string.IsNullOrEmpty(listName)) throw new ArgumentException("The list name parameter cannot be Empty or null");
-        }
-        /// <summary>
-        /// This will validate People Picker
-        /// </summary>
-        /// <param name="parameter"></param>
-       private static void validatePoplePicker(Parameter parameter)
-        {
-            if (parameter.IsPeoplePicker && parameter.User == null)
-                throw new Exception("If IsPeoplePicker is true then User cannot be null");
-        }
+      
        
-        /// <summary>
-        /// Validates whether the Parameter list or orderByField are null values.If both parameters are null throw exception
-        /// </summary>
-        /// <param name="parameterList">Parameter list values</param>
-        /// <param name="orderByField">Order by field</param>
-        public static void ValidateParamelistAndOrdeByField(List<Parameter> parameterList, string orderByField)
-        {
-            if (string.IsNullOrEmpty(orderByField) && parameterList == null) throw new ArgumentException("Either parametrList or orderByField cannot be null(one of them must be null)");
-        }
-        /// <summary>
-        /// Validate the listitem Id if it's not less than or equal to 0
-        /// </summary>
-        /// <param name="id">List Item Id</param>
-        public static void ValidateListItemKey(int id)
-        {
-            if (id <= 0) throw new Exception("No list item can have 0 as the key");
-        }
-       
-
         /// <summary>
         /// Returns items on the list[listName = name of the list where query is performed] that matches the provided parameterList[filter]
         /// </summary>
@@ -300,12 +229,17 @@ namespace SharePointHelper.CRUD
         /// <param name="parameterList">filter list</param>
         /// <param name="orderByField">field to order if paramlist is null</param>
         /// <returns>ListItems</returns>
-        public static IEnumerable<ListItem> GetAnyListData(ClientContext clientContext, string listName, List<Parameter> parameterList = null, string orderByField = null)
+        public static IEnumerable<ListItem> GetAnyListData(string listName, List<Parameter> parameterList = null, string orderByField = null)
         {
             try
             {
-                ValidateListName(listName);
-                ValidateParamelistAndOrdeByField(parameterList, orderByField);
+                ///<summary>
+                ///Connect to Online SharePoint
+                ///</summary>
+                ClientContext clientContext = new ClientContext(_connectionSetting.ConnectionSharePointUrl);
+                SecureString securePassword = new SecureString();
+                _connectionSetting.Pasword.ToList().ForEach(securePassword.AppendChar);
+                clientContext.Credentials = new SharePointOnlineCredentials(_connectionSetting.Username, securePassword);
                 var listItem = new List<ListItem>();
                 var camlQuery = new CamlQuery();
 
@@ -313,8 +247,7 @@ namespace SharePointHelper.CRUD
                 {
                     using (clientContext)
                     {
-                        camlQuery.ViewXml = parameterList != null ? LookupHelper.FilterByAnyField(parameterList).ViewXml
-                                                                  : string.Format(@"<Query><OrderBy><FieldRef Name = '{0}'/></OrderBy></Query>", orderByField);
+                        camlQuery.ViewXml = string.Format(@"<Query><OrderBy><FieldRef Name = '{0}'/></OrderBy></Query>", orderByField);
                         var listItemCollection = clientContext
                                                 .Web
                                                 .Lists

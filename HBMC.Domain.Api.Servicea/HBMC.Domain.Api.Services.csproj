@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.SharePoint.Client.Online.CSOM" Version="15.0.4919.1000" />
     <PackageReference Include="Microsoft.SharePointOnline.CSOM" Version="16.1.20518.12000" />
   </ItemGroup>
 

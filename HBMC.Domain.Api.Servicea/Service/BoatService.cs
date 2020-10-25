@@ -1,23 +1,25 @@
 ﻿using HBMC.Domain.Api.Models;
 using HBMC.Domain.Api.Services.Interface;
+using Microsoft.Extensions.Configuration;
 using Microsoft.SharePoint.Client;
 using SharePointHelper.CRUD;
-using SharePointHelper.Lookups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HBMC.Domain.Api.Services.Service
 {
-    public class ManageBoatService : IBoatsService
+    public class BoatService : IBoatsService
     {
 
-        private ISharePointServiceConfig _sharePointServiceConfig;
-        public ManageBoatService(ISharePointServiceConfig sharePointServiceConfig )
+        IConfiguration _configuration;
+        public BoatService(IConfiguration configuration)
         {
-            _sharePointServiceConfig = sharePointServiceConfig;
+            _configuration = configuration;
+           
         }
 
         public async Task<Boats> Add(Boats model)
@@ -33,19 +35,11 @@ namespace HBMC.Domain.Api.Services.Service
         public async Task<IEnumerable<Boats>> GetAllBoats()
         {
             ///<summary>
-            /// Define client context object
             /// Get all boats from SharePoint List using Library HBMC.Domain.Api.SharePoint.Services
             /// 
             ///</summary>
-            var siteUrl = "https://harbourmbc.sharepoint.com";
-
-
-            ClientContext clientContext = new ClientContext(_sharePointServiceConfig.ConnectionSharePointUrl);
-
-            var boats = new List<Boats>();
-            var getLists =   SharePointHelper.CRUD.CRUDOperations.GetAnyListData(clientContext, nameof(Boats));
-            return boats;
-
+            var model = SharePointHelper.CRUD.CRUDOperations.GetAnyListData(nameof(Boats));
+            return (IEnumerable<Boats>)model.ToList();
         }
 
         public async Task<Boats> GetById(string Id)
