@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBMC.Web.Api.RestClientServ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HBMC.Domain.Api.SharePoint.Services", "HBMC.Domain.Api.SharePoint.Services\HBMC.Domain.Api.SharePoint.Services.csproj", "{3CCEAC7D-69C7-4A1E-8EAB-B76F3A6098DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBMC.Domain.Api.Services", "HBMC.Domain.Api.Servicea\HBMC.Domain.Api.Services.csproj", "{7123372B-260F-4F2D-9C85-779E653F8E88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{3CCEAC7D-69C7-4A1E-8EAB-B76F3A6098DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CCEAC7D-69C7-4A1E-8EAB-B76F3A6098DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CCEAC7D-69C7-4A1E-8EAB-B76F3A6098DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7123372B-260F-4F2D-9C85-779E653F8E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7123372B-260F-4F2D-9C85-779E653F8E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7123372B-260F-4F2D-9C85-779E653F8E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7123372B-260F-4F2D-9C85-779E653F8E88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{82838D57-1C6C-45C0-A4DF-7C94500C16B6} = {E8592A14-DA49-47C1-ABA2-0852103C0BC5}
 		{A589B206-5072-49B7-AC73-3554DA0F77AE} = {E8592A14-DA49-47C1-ABA2-0852103C0BC5}
 		{3CCEAC7D-69C7-4A1E-8EAB-B76F3A6098DE} = {7C6D5D08-242D-42E2-A79C-A78CBF6F9FD1}
+		{7123372B-260F-4F2D-9C85-779E653F8E88} = {7C6D5D08-242D-42E2-A79C-A78CBF6F9FD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {459C1A62-9A4A-44D0-8A61-E985BE01DC13}
