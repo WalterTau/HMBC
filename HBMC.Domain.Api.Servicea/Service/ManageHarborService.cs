@@ -19,7 +19,7 @@ namespace HBMC.Domain.Api.Services.Service
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Boat>> GetAllHarbour()
+        public async Task<IEnumerable<Boats>> GetAllHarbour()
         {
             throw new NotImplementedException();
         }

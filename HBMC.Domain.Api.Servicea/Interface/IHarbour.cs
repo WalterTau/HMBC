@@ -9,7 +9,7 @@ namespace HBMC.Domain.Api.Services.Interface
     public interface IHarbour
     {
         Task<Harbor> Add(Harbor model);
-        Task<IEnumerable<Boat>> GetAllHarbour();
+        Task<IEnumerable<Boats>> GetAllHarbour();
         Task<Harbor> GetById(string id);
         Task<Harbor> Delete();
         Task<Harbor> Update();

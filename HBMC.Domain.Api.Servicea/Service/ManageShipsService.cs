@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HBMC.Domain.Api.Services.Service
 {
-    class ManageShipsService : IShipsService
+    public class ManageShipsService : IShipsService
     {
         public async Task<Ship> Add(Ship model)
         {
