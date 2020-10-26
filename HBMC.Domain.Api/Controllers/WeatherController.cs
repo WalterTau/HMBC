@@ -14,10 +14,10 @@ namespace HBMC.Domain.Api.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
-        private readonly IWeatherService<WeatherRootObject> _weatherService;
+        private readonly IWeatherService _weatherService;
         private readonly ILogger<WeatherRootObject> _logger;
 
-        public WeatherController(IWeatherService<WeatherRootObject> weatherService, ILogger<WeatherRootObject> logger)
+        public WeatherController(IWeatherService weatherService, ILogger<WeatherRootObject> logger)
         {
             _weatherService = weatherService;
             _logger = logger;

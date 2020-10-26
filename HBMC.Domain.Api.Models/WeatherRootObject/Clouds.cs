@@ -6,6 +6,6 @@ namespace HBMC.Domain.Api.Models
 {
     public class Clouds
     {
-        public int All { get; set; }
+        public int all { get; set; }
     }
 }

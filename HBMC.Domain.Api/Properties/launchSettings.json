@@ -20,7 +20,7 @@
     "HBMC.Domain.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/boats",
+      "launchUrl": "api/weather",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

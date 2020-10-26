@@ -6,10 +6,10 @@ namespace HBMC.Domain.Api.Models
 {
     public class Sys
     {
-        public string Type { get; set; }
-        public string Id { get; set; }
-        public string Country { get; set; }
-        public string Sunrise { get; set; }
-        public string Sunset { get; set; }
+        public int type { get; set; }
+        public int  id { get; set; }
+        public string country { get; set; }
+        public int sunrise { get; set; }
+        public int sunset { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace HBMC.Domain.Api.Services.SharePointOnlineServiceHelper
     {
 
         public List<Boats> Boats { get; set; }
-        public List<Weather> Ships { get; set; }
+        public List<Ships> Ships { get; set; }
 
 
     }

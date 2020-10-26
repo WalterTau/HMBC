@@ -6,19 +6,19 @@ namespace HBMC.Domain.Api.Models
 {
 	public class WeatherRootObject
 	{
-		public string Id { get; set; }
-		public Wind Wind { get; set; }
-		public List<Weather> Weather {get;set;}
-		public string Name { get; set; }
-		public int Cos { get; set; }
-		public string DT { get; set; }
+		public int id { get; set; }
+		public Wind wind { get; set; }
+		public List<Weather> weather { get;set;}
+		public string name { get; set; }
+		public int cod { get; set; }
+		public int dt { get; set; }
 		public string @base { get; set;}
-		public Coord Coord { get; set; }
-		public Main Main { get; set; }
-		public Clouds Clouds { get; set; }
-		public Sys Sys { get; set; }
-		public int Visibility { get; set; }
-		public int TimeZone { get; set; }
+		public Coord coord { get; set; }
+		public Main main { get; set; }
+		public Clouds clouds { get; set; }
+		public Sys sys { get; set; }
+		public int visibility { get; set; }
+		public int timezone { get; set; }
 	}
 
 		

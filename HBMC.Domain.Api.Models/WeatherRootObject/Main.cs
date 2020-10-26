@@ -6,10 +6,11 @@ namespace HBMC.Domain.Api.Models
 {
     public class Main
     {
-        public string Temp { get; set; }
-        public string Feels_like { get; set; }
-        public string Temp_main { get; set; }
-        public string Pressure { get; set; }
-        public string Humidity { get; set; }
+        public double temp { get; set; }
+        public double feels_like { get; set; }
+        public double temp_min { get; set; }
+        public double temp_max { get; set; }
+        public int pressure { get; set; }
+        public int humidity { get; set; }
     }
 }

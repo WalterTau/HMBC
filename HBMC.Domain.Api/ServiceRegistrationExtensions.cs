@@ -1,4 +1,5 @@
-﻿using HBMC.Domain.Api.Services.Interface;
+﻿using HBMC.Domain.Api.Models;
+using HBMC.Domain.Api.Services.Interface;
 using HBMC.Domain.Api.Services.Service;
 using HBMC.Domain.Api.Services.SharePointOnlineServiceHelper;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,8 @@ namespace HBMC.Domain.Api
             services.AddTransient<IShipsService, ShipsService>();
             services.AddTransient<IScheduleService, ScheduleService>();
             services.AddTransient<IHarbourService, HarborService>();
-           
+            services.AddTransient<IWeatherService, WeatherService>();
+
         }
     }
 }
