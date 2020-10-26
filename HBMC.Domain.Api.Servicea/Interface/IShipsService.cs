@@ -8,10 +8,10 @@ namespace HBMC.Domain.Api.Services.Interface
 {
     public interface IShipsService
     {
-        Task<Ship> Add(Ship model);
-        Task<IEnumerable<Ship>> GetAllBoats();
-        Task<Ship> GetById(string Id);
-        Task<Ship> Delete();
-        Task<Ship> Update();
+        Task<Ships> Add(Ships model);
+        Task<IEnumerable<Ships>> GetAllBoats();
+        Task<Ships> GetById(string Id);
+        Task<Ships> Delete();
+        Task<Ships> Update(string Id);
     } 
 }

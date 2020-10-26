@@ -2,40 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HBMC.Domain.Api.Helper;
 using HBMC.Domain.Api.Models;
 using HBMC.Domain.Api.Services.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace HBMC.Domain.Api.Controllers
 {
-  
     [Route("api/[controller]")]
     [ApiController]
-    public class BoatsController : Controller
+    public class ScheduleController : ControllerBase
     {
-        private readonly IBoatsService _boatsService;
-        private readonly ILogger<Boats> _logger;
+        private readonly IScheduleService _scheduleService;
+        private readonly ILogger<Schedule> _logger;
 
-        public BoatsController(IBoatsService boatsService , ILogger<Boats> logger)
+        public ScheduleController(IScheduleService scheduleService, ILogger<Schedule> logger)
         {
-            _boatsService = boatsService;
+            _scheduleService = scheduleService;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Boats>> Get()
+        public async Task<IEnumerable<Schedule>> Get()
         {
-            return await _boatsService.GetAllBoats();
+            return await _scheduleService.GetAllSchedules();
         }
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> Get(string Id)
         {
-            return Ok(await _boatsService.GetById(Id));
+            return Ok(await _scheduleService.GetById(Id));
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HBMC.Domain.Api.Services.Interface
 {
-    public interface IHarbour
+    public interface IHarbourService
     {
         Task<Harbor> Add(Harbor model);
-        Task<IEnumerable<Boats>> GetAllHarbour();
+        Task<IEnumerable<Harbor>> GetAllHarbour();
         Task<Harbor> GetById(string id);
         Task<Harbor> Delete();
         Task<Harbor> Update();

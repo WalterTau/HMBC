@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HBMC.Domain.Api.Model
+namespace HBMC.Web.Api.Model
 {
     public class Class1
     {

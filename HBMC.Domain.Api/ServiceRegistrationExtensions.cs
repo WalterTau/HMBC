@@ -1,6 +1,6 @@
 ﻿using HBMC.Domain.Api.Services.Interface;
 using HBMC.Domain.Api.Services.Service;
-using HBMC.Domain.Api.SharePoint.Services;
+using HBMC.Domain.Api.Services.SharePointOnlineServiceHelper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -13,17 +13,17 @@ namespace HBMC.Domain.Api
 	
         public static void RegisterDomainAPIServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<SharePointServiceConfig>(configuration.GetSection("SharePointOnlineConfig").GetSection("Url"));
+            services.Configure<SharePointServiceHelper>(configuration.GetSection("SharePointOnlineConfig").GetSection("Url"));
           
 
-            services.AddSingleton<ISharePointConnectionSetting>(sp =>
-             new SharePointConnectionSetting(sp.GetRequiredService<IOptions<SharePointServiceConfig>>().Value, configuration)
+            services.AddSingleton<ISharePointServiceHelper>(sp =>
+             new SharePointServiceConfig(sp.GetRequiredService<IOptions<SharePointServiceHelper>>().Value)
             );
 
             services.AddTransient<IBoatsService, BoatService>();
             services.AddTransient<IShipsService, ShipsService>();
             services.AddTransient<IScheduleService, ScheduleService>();
-            services.AddTransient<IHarbour, HarborService>();
+            services.AddTransient<IHarbourService, HarborService>();
            
         }
     }

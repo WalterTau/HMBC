@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HBMC.Domain.Api.Models
 {
-    public class Ship
+    public class Ships
     {
 		public string Id { get; set; }
 		public int Size { get; set; }
