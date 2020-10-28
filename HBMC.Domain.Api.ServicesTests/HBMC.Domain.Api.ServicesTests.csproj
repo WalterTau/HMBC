@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HBMC.Domain.Api.Servicea\HBMC.Domain.Api.Services.csproj" />
+    <ProjectReference Include="..\HBMC.Domain.Api.Services\HBMC.Domain.Api.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
