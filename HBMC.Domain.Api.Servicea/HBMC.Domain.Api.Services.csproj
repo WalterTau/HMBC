@@ -21,8 +21,8 @@
     <Reference Include="Microsoft.SharePoint.Client.Runtime">
       <HintPath>..\..\SharePointLibrary\SharePointLibrary\bin\Debug\Microsoft.SharePoint.Client.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="SharePointLibrary">
-      <HintPath>..\..\SharePointLibrary\SharePointLibrary\bin\Debug\SharePointLibrary.dll</HintPath>
+    <Reference Include="SharePointLibraryService">
+      <HintPath>..\SharePointLibraryService\bin\Debug\SharePointLibraryService.dll</HintPath>
     </Reference>
   </ItemGroup>
 
